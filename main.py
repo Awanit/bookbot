@@ -17,11 +17,26 @@ def main():
     file_path = "books/frankenstein.txt"
 
     with open(file_path) as f:
-        file_contents = f.read()
-        print(file_contents)
+        file_contents = f.read() 
+        # Word count
+    
         w_count = words_count(file_contents)
-        print(w_count)
+    
+        # Character count
         c_count = char_count(file_contents)
-        print(c_count)
+    
+        # Convert the dictionary to a list of tuples and sort it in place by frequency (descending order)
+        sorted_char_count = list(c_count.items())
+    
+        # Sort in place by character count in descending order
+        sorted_char_count.sort(reverse=True, key=lambda item: item[1])
+
+        print(f"--- Begin report of {file_path} ---")
+        print(f"{w_count} words found in the document\n")
+    
+        for char, count in sorted_char_count:
+            print(f"The '{char}' character was found {count} times")
+    
+        print(f"--- End report ---")
 if __name__ == "__main__":
     main()
